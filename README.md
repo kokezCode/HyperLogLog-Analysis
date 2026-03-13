@@ -8,11 +8,11 @@ HyperLogLog, bellek verimliliği odaklı olasılıksal bir veri yapısıdır. Ge
 ##  Teknik Bileşenler
 Algoritmanın başarısını sağlayan temel bileşenler şunlardır:
 
-**Hashing:** Verilerin 64-bitlik bir uzaya düzgün dağılımı (uniform distribution) için **MurmurHash3 (mmh3)** kullanılmıştır.
-**Kovalama (Bucketing):** Hash değerinin ilk $p$ biti kullanılarak veri $m = 2^p$ alt kümeye bölünür, bu da hata varyansını azaltır.
-**Harmonik Ortalama:** Uç değerlerin (outliers) tahmini bozmasını engellemek amacıyla register değerlerinin harmonik ortalaması alınır.
+* **Hashing:** Verilerin 64-bitlik bir uzaya düzgün dağılımı (uniform distribution) için **MurmurHash3 (mmh3)** kullanılmıştır.
+* **Kovalama (Bucketing):** Hash değerinin ilk $p$ biti kullanılarak veri $m = 2^p$ alt kümeye bölünür, bu da hata varyansını azaltır.
+* **Harmonik Ortalama:** Uç değerlerin (outliers) tahmini bozmasını engellemek amacıyla register değerlerinin harmonik ortalaması alınır.
 **Linear Counting:** Küçük veri setlerindeki ($2.5 \times m$) yanlılığı gidermek için düşük kardinalite düzeltmesi uygulanır.
-**Merge Özelliği:** Dağıtık sistemlerde kullanılabilmesi için iki farklı HLL yapısının kayıpsız birleştirilmesini destekler.
+* **Merge Özelliği:** Dağıtık sistemlerde kullanılabilmesi için iki farklı HLL yapısının kayıpsız birleştirilmesini destekler.
 
 ##  Analiz ve Simülasyon Sonuçları
 Proje kapsamında, 100.000 eşsiz öğe içeren bir veri seti üzerinden farklı hassasiyet ($p$) değerleri test edilmiştir. Sonuçlar, teorik hata sınırı olan $1.04/\sqrt{m}$ formülü ile kıyaslanmıştır.
@@ -42,10 +42,10 @@ This project implements the **HyperLogLog (HLL)** algorithm from scratch in Pyth
 HyperLogLog is a probabilistic data structure that provides a near-exact count of unique items. While traditional methods require $O(N)$ space, HLL operates in $O(\log \log N)$ space, allowing it to estimate billions of items using only a few kilobytes of memory. 
 
 ##  Technical Components
-**Hashing:** Uses **MurmurHash3 (mmh3)** for high-quality, 64-bit uniform distribution.
-**Estimation:** Employs the **Harmonic Mean** to reduce the impact of outliers and improve stability. 
-**Small Range Correction:** Implements **Linear Counting** for low-cardinality sets to eliminate bias.
-**Mergeability:** Supports lossless merging of different HLL instances, ideal for distributed systems.
+* **Hashing:** Uses **MurmurHash3 (mmh3)** for high-quality, 64-bit uniform distribution.
+* **Estimation:** Employs the **Harmonic Mean** to reduce the impact of outliers and improve stability. 
+* **Small Range Correction:** Implements **Linear Counting** for low-cardinality sets to eliminate bias.
+* **Mergeability:** Supports lossless merging of different HLL instances, ideal for distributed systems.
 
 ##  Analysis & Results
 The project includes a simulation that compares empirical error rates against the theoretical bound of $1.04/\sqrt{m}$. 
